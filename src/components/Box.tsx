@@ -9,6 +9,7 @@ export default function Box(props: { position: Vector3 }) {
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
+
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
     if (meshRef.current?.rotation && meshRef.current.rotation.x) {
@@ -16,9 +17,7 @@ export default function Box(props: { position: Vector3 }) {
     }
   })
   // Return view, these are regular three.js elements expressed in JSX
-  if (!meshRef.current) {
-    return <></>;
-  }
+
   return (
     <mesh
       {...props}
