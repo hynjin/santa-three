@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Canvas } from '@react-three/fiber';
+import Ball from '../components/Ball';
 import Box from '../components/Box';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default function Home() {
           <pointLight position={[10, 10, 10]} />
           <Box position={[-1.2, 0, 0]} />
           <Box position={[1.2, 0, 0]} />
+          <Ball position={[0, 0, 1]} />
         </Canvas>
       </div>
     </main>

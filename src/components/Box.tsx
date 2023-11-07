@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber';
 import type { ThreeElements } from '@react-three/fiber';
 import { Mesh, Euler, Vector3, Color } from 'three'
@@ -9,7 +9,7 @@ import { Mesh, Euler, Vector3, Color } from 'three'
 
 export default function Box(props: { position: number[] }) {
   // This reference will give us direct access to the mesh
-  const boxPosition = new Vector3( ...props.position );
+  const position = useMemo(() => new Vector3( ...props.position ), [props.position]);
 
   const meshRef = useRef<Mesh>(null!);
 
@@ -22,12 +22,11 @@ export default function Box(props: { position: number[] }) {
       meshRef.current.rotation.x += delta;
       meshRef.current.rotation.y += delta;
   })
-  // Return view, these are regular three.js elements expressed in JSX
 
   return (
     <mesh
       ref={meshRef}
-      position={boxPosition}
+      position={position}
       scale={active ? 1.5 : 1}
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
@@ -35,5 +34,5 @@ export default function Box(props: { position: number[] }) {
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
-  )
+  );
 }
