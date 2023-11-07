@@ -3,13 +3,10 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Canvas } from '@react-three/fiber';
 import Box from '../components/Box';
-import { Mesh, Euler, Vector3, Color } from 'three'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const boxPosition1 = new Vector3( -1.2, 0, 0 );
-  const boxPosition2 = new Vector3( 1.2, 0, 0 );
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
@@ -22,8 +19,8 @@ export default function Home() {
         <Canvas>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <Box position={boxPosition1} />
-          <Box position={boxPosition2} />
+          <Box position={[-1.2, 0, 0]} />
+          <Box position={[1.2, 0, 0]} />
         </Canvas>
       </div>
     </main>
